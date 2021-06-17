@@ -18,8 +18,13 @@ bot = Bot(token=bot.API_TOKEN)
 dp = Dispatcher(bot)
 
 
-@dp.message_handler()
+@dp.message_handler(commands=['start'])
 async def welcome(message: types.Message):
+    await message.answer('Привет! Что ты хочешь найти в википедии?')
+
+
+@dp.message_handler()
+async def get_page_wiki(message: types.Message):
     find_page = search_page(message.text)
     await message.answer(find_page)
 
